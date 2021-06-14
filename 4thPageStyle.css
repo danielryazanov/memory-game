@@ -1,0 +1,84 @@
+/*Fonts*/
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&display=swap');
+
+/*mobile styling:*/
+body {
+    font-family:var(--page_font);
+    min-height:100vh;
+    padding:0px;
+    margin: 0px;
+    background-image: linear-gradient(to right, hsla(239, 72%, 27%, 1), hsla(235, 72%, 56%, 1));
+} 
+
+header {
+    height: 10vh;
+}
+
+main {
+    height: 70vh;
+}
+
+footer {
+    height: 20vh;
+}
+
+#container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+caption {
+    margin:0 auto 8px auto;
+    padding:2px;
+    border-bottom:1px solid;
+}
+
+table {
+    width: 70%;    
+    border-collapse: collapse;
+    background-color: grey;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+table, th, td {    
+    margin-bottom: 20px;    
+}
+
+th, td {
+    padding: 0.33rem;
+}
+
+th:first-child {
+    border-top-left-radius: 10px;
+}
+
+th:last-child {
+    border-top-right-radius: 10px;
+}
+
+tr:hover {
+    background-color: hsla(235, 72%, 56%, 1);
+}
+
+#play_again {
+    display:block ;
+    margin: auto;
+    font-size: 1.5rem;
+}
+
+#share_icons_div {
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto 0 auto;
+    align-items: center;
+}
+
+/* style for pc:*/
+@media screen and (min-width: 1024px) {
+
+}
