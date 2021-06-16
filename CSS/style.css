@@ -1,0 +1,109 @@
+body {
+  position: relative;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background: url(../Pics/board.jpg);
+  background-size: cover;
+  font-family: fantasy;
+}
+
+.flex {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  padding-left: 250px;
+  top: 130px;
+  margin: 70px;
+  /* padding-left: 80px; */
+}
+
+img {
+  margin: 20px;
+  width: 250px;
+  height: 250px;
+  border-radius: 150px;
+  border: 2px solid gainsboro;
+}
+
+img:hover {
+  text-align: center;
+  opacity: 0.5;
+}
+
+.container-one,
+.container-two,
+.container-three,
+p {
+  text-align: center;
+  font-size: 14px;
+  color: #000000;
+}
+
+/*On screens that are 600px wide or less, make the menu links stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .flex,
+  p img {
+    background-size: cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    margin: 10% auto;
+    padding-left: 5%;
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .button {
+    background: none;
+    top: -210px;
+    right: 22px;
+    border-color: #151b29;
+    color: #36352d;
+    border: 2px solid;
+    border-radius: 5px 5px 5px 5px;
+    transition: all 0.25s;
+    font-size: 8px;
+    font-family: fantasy;
+  }
+
+  button:hover {
+    border-color: #151b29;
+    color: #000000;
+    box-shadow: 0px 1em 1em 0 #151b29;
+    transform: translateY(-0.25em);
+    border-radius: 5px 5px 5px 5px;
+  }
+}
+/* -Button- */
+
+button {
+  position: relative;
+  background: none;
+  top: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 46%;
+  margin-top: 13%;
+  border-color: #151b29;
+  color: #36352d;
+  border: 2px solid;
+  border-radius: 5px 5px 5px 5px;
+  padding: 1em 2.5em;
+  font-size: 1em;
+  transition: all 0.25s;
+  font-size: 14px;
+  font-family: fantasy;
+}
+
+button:hover {
+  border-color: #151b29;
+  color: #000000;
+  box-shadow: 0px 1em 1em 0 #151b29;
+  transform: translateY(-0.25em);
+  border-radius: 5px 5px 5px 5px;
+}
