@@ -11,11 +11,11 @@ body {
   flex-direction: row;
   align-items: center;
   align-content: center;
-  justify-content: space-around;
-  padding-left: 5vw;
-  top: 5vh;
-  margin: 10vw;
-
+  justify-content: center;
+  /* padding-left: 5vw;
+  margin: 7vh 10vw;
+  /* top: 5vh; */
+  padding-top: 7vh;
 }
 
 img {
@@ -31,9 +31,11 @@ img:hover {
   opacity: 0.5;
 }
 
-.container-one,
-.container-two,
-.container-three,
+.container-person {
+  padding: 3vh 3vw;
+}
+
+.container-person,
 p {
   text-align: center;
   font-size: 14px;
@@ -82,7 +84,6 @@ p {
 }
 
 /* -Button- */
-
 button {
   position: relative;
   background: none;
@@ -108,8 +109,5 @@ button:hover {
 .btn-container {
   display: flex;
   justify-content: center;
-  padding-left: 5vw;
-  top: 5vh;
-  margin: 10vw;
-
+  margin-top: 7vh;
 }
