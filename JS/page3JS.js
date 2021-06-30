@@ -26,84 +26,65 @@ function go(x){
   });
 
 }
-$(function() {
-    
-    var hours = minutes = seconds = milliseconds = 0;
-    var prev_hours = prev_minutes = prev_seconds = prev_milliseconds = undefined;
-    var timeUpdate;
-	
-    // Start/Pause/Resume button onClick
-    $("#start_pause_resume").button().click(function(){
-        // Start button
-        if($(this).text() == "Start"){  // check button label
-            $(this).html("<span class='ui-button-text'>Pause</span>");
-            updateTime(0,0,0,0);
-        }
-		// Pause button
-        else if($(this).text() == "Pause"){
-            clearInterval(timeUpdate);
-            $(this).html("<span class='ui-button-text'>Resume</span>");
-        }
-		// Resume button		
-        else if($(this).text() == "Resume"){
-            prev_hours = parseInt($("#hours").html());
-            prev_minutes = parseInt($("#minutes").html());
-            prev_seconds = parseInt($("#seconds").html());
-            prev_milliseconds = parseInt($("#milliseconds").html());
-            
-            updateTime(prev_hours, prev_minutes, prev_seconds, prev_milliseconds);
-            
-            $(this).html("<span class='ui-button-text'>Pause</span>");
-        }
-    });
-    
-    // Reset button onClick
-    $("#reset").button().click(function(){
-        if(timeUpdate) clearInterval(timeUpdate);
-        setStopwatch(0,0,0,0);
-        $("#start_pause_resume").html("<span class='ui-button-text'>Start</span>");      
-    });
-    
-    // Update time in stopwatch periodically - every 25ms
-    function updateTime(prev_hours, prev_minutes, prev_seconds, prev_milliseconds){
-        var startTime = new Date();    // fetch current time
-        
-        timeUpdate = setInterval(function () {
-            var timeElapsed = new Date().getTime() - startTime.getTime();    // calculate the time elapsed in milliseconds
-            
-            // calculate hours                
-            hours = parseInt(timeElapsed / 1000 / 60 / 60) + prev_hours;
-            
-            // calculate minutes
-            minutes = parseInt(timeElapsed / 1000 / 60) + prev_minutes;
-            if (minutes > 60) minutes %= 60;
-            
-            // calculate seconds
-            seconds = parseInt(timeElapsed / 1000) + prev_seconds;
-            if (seconds > 60) seconds %= 60;
-            
-            // calculate milliseconds 
-            milliseconds = timeElapsed + prev_milliseconds;
-            if (milliseconds > 1000) milliseconds %= 1000;
-            
-            // set the stopwatch
-            setStopwatch(hours, minutes, seconds, milliseconds);
-            
-        }, 25); // update time in stopwatch after every 25ms
-        
+
+/*======================================================================================== STOPWATCH=============================================================================================*/
+// Variables holding time integers:
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+
+// Variables holding the actual display value:
+let seconds_display = 0;
+let minutes_display = 0;
+let hours_display = 0;
+
+//variables to hold setInterval function and stopwatch status:
+let start_timer = null;
+let stopwatch_started = false;
+
+// The main stopwatch function:
+function stopWatch() {
+    seconds++
+    let display = document.getElementById('stopwatch');
+
+// When to increment mins/hrs:
+    if (seconds > 59) {
+        seconds = 0
+        minutes++
     }
-    
-    // Set the time in stopwatch
-    function setStopwatch(hours, minutes, seconds, milliseconds){
-        $("#hours").html(prependZero(hours, 2));
-        $("#minutes").html(prependZero(minutes, 2));
-        $("#seconds").html(prependZero(seconds, 2));
-        $("#milliseconds").html(prependZero(milliseconds, 3));
+    if (minutes > 59) {
+        minutes = 0
+        hours++
     }
-    
-    // Prepend zeros to the digits in stopwatch
-    function prependZero(time, length) {
-        time = new String(time);    // stringify time
-        return new Array(Math.max(length - time.length + 1, 0)).join("0") + time;
+
+// When to display 0 before the number:
+    if (seconds < 10) {
+        seconds_display = '0' + seconds;
+    } else {
+        seconds_display = seconds
     }
-});
+    if (minutes < 10) {
+        minutes_display = '0' + minutes;
+    } else {
+        minutes_display = minutes
+    }
+    if (hours < 10) {
+        hours_display = '0' + hours;
+    } else {
+        hours_display = hours
+    }
+    display.innerHTML = hours_display + ':' + minutes_display + ':' + seconds_display;    
+}
+
+// starting and stoping the stopwatch when clicking the start/stop button:
+let start_stop = document.getElementById('start_stop');
+  start_stop.addEventListener('click', (event) => {
+    if (stopwatch_started == false) {
+      start_timer = window.setInterval(stopWatch, 1000); 
+      stopwatch_started = true;
+    } else {
+      clearInterval(start_timer);
+      stopwatch_started = false;
+    }  
+})  
+

@@ -2,13 +2,11 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <link rel= 'stylesheet' href ='page3.css'>
+    <link rel= 'stylesheet' href ='../CSS/page3.css'>
     <title>title</title>
     
   </head>
-  <body id="body">
-    <script type="" src="page3JS.js"></script>
-
+  <body id="body">    
     <header>
         <div id="title">
             <div >
@@ -50,11 +48,8 @@
             <span>00</span>
         </div>
     </div>
-    <div id="time" >
-        <span id="hours">00</span> :
-        <span id="minutes">00</span> :
-        <span id="seconds">00</span> ::
-        <span id="milliseconds">000</span>
+    <div id="stopwatch" >
+            00:00:00
     </div><br>
         <section class='cardgameP'>
             <div class= "card">
@@ -119,7 +114,7 @@
 
         <div class="mid">
             <label class="rocker">
-              <input type="checkbox" checked>
+              <input type="checkbox" checked id="start_stop">
               <span class="switch-left">Start</span>
               <span class="switch-right">Stop</span>
             </label>
@@ -131,6 +126,6 @@
             <div class="btn-particles">
             </div>
           </div>
-               
+       <script src="../JS/page3JS.js"></script>        
   </body>
 </html>

@@ -2,10 +2,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-/*style for mobile:*/
-
 :root {
-    --table_border_radius: 10px
+    --table_border_radius: 10px;
+    font-size: 3.5vw
+    
 }
 
 body {    
@@ -71,7 +71,7 @@ th {
     text-transform: uppercase;
 }
 
-/*change color on hover + making the border radius still apply when hover*/
+/*Table Styling: change color on hover + making the border radius still apply when hover*/
 
 tr:hover {
     background-color: black;
@@ -119,13 +119,20 @@ tr:last-child td:last-child {
 #play_again:active {
     transform: scale(1.19);
 }
+/*Share icons and header*/
+#share_span {
+    width: fit-content;
+    display: block;
+    margin: 0 auto;
+}
 
 #share_items_container {
-    height: 20vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
+    width: 130px;
+    margin: 20px auto 0 auto;
 }
 
 .share_img {
@@ -137,7 +144,10 @@ tr:last-child td:last-child {
     align-self: flex-end;
 }
 
-/* style for pc:*/
-@media screen and (min-width: 1024px) {
+/* style for pc: (512px and above)*/
+@media screen and (min-width: 512px) {
+    :root {
+        font-size: initial;
+    }
 
 }
