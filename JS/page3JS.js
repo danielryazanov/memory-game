@@ -31,12 +31,10 @@ function go(x){
 // Variables holding time integers:
 let seconds = 0;
 let minutes = 0;
-let hours = 0;
 
 // Variables holding the actual display value:
 let seconds_display = 0;
 let minutes_display = 0;
-let hours_display = 0;
 
 //variables to hold setInterval function and stopwatch status:
 let start_timer = null;
@@ -52,9 +50,12 @@ function stopWatch() {
         seconds = 0
         minutes++
     }
-    if (minutes > 59) {
-        minutes = 0
-        hours++
+    if (minutes == 59 && seconds == 59) {
+      (() => {    
+        alert('You ran out of time')
+        clearInterval(start_timer);
+        stopwatch_started = false;
+  })()
     }
 
 // When to display 0 before the number:
@@ -67,13 +68,8 @@ function stopWatch() {
         minutes_display = '0' + minutes;
     } else {
         minutes_display = minutes
-    }
-    if (hours < 10) {
-        hours_display = '0' + hours;
-    } else {
-        hours_display = hours
-    }
-    display.innerHTML = hours_display + ':' + minutes_display + ':' + seconds_display;    
+    }    
+    display.innerHTML = minutes_display + ':' + seconds_display;    
 }
 
 // starting and stoping the stopwatch when clicking the start/stop button:
@@ -87,4 +83,15 @@ let start_stop = document.getElementById('start_stop');
       stopwatch_started = false;
     }  
 })  
+
+
+// sending user details and game details in next page url:
+let scoreTableLink = document.getElementById("score-table-link")
+// storing the current values on click and changing the link accordingly:
+scoreTableLink.addEventListener('click', (event) => {
+  let userScore = document.getElementById('score').innerText;
+  let userTime = document.getElementById('stopwatch').innerText;
+  scoreTableLink.href = '../HTML/4thPage.html' + window.location.search + '&score=' + userScore + '&time=' + userTime
+})
+
 

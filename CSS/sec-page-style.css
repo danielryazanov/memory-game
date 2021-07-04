@@ -1,14 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
 body {
-  font-family: fantasy;
+  font-family: 'Roboto', sans-serif;    ;
   background-image: url(../Pics/back-sec.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   box-shadow: #3b3e46;
 }
 
+fieldset {
+  border: none;
+}
+
 input {
   background: transparent;
   margin-left: 5px;
+  border: none;
+  border-bottom: 1px solid darkred;
 }
 
 ::placeholder {
@@ -50,6 +59,7 @@ button {
   transition: all 0.25s;
   font-size: 12px;
   font-family: fantasy;
+  margin-top: 15px;
 }
 
 button:hover {
