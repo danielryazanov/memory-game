@@ -1,4 +1,4 @@
-// getting user info
+// getting user info:
 const urlSearchParams = new URLSearchParams(window.location.search);
 const userDetails = Object.fromEntries(urlSearchParams.entries());
 const { fname, lname, email, score, time,} = userDetails;
@@ -16,6 +16,7 @@ userDetails.fullName = (fname, lname) => {
     byScrTable.rows[lastRow].getElementsByTagName('td')[1].innerHTML = email;
     byScrTable.rows[lastRow].getElementsByTagName('td')[2].innerHTML = score;
     byScrTable.rows[lastRow].getElementsByTagName('td')[3].innerHTML = time;
+
     //adding user info to existing empty row and cells in time table:
     const byTimeTable = document.getElementById('by_time_tbl')
     lastRow = byTimeTable.rows.length - 1;
@@ -92,13 +93,11 @@ function sortScoreTable() {
     }
   }
 
- 
-/*
-  *currently not working properly  
 //adding game and user info to share links:
 const waShare = document.getElementById('wa-share');
-waShare.href = "https://wa.me/?text=" + window.location.href
 const emailShare = document.getElementById('email-share') ;
-emailShare.href = 'mailto:?Subject=Watch my game score!&body=' + '&a&b&c&d&e&f'
-*/
+const encodedCurrentUrl =  encodeURIComponent(window.location.href)
+waShare.href = "https://wa.me/?text=" + encodedCurrentUrl
+emailShare.href = 'mailto:?Subject=Watch my memory game score!&body=' + encodedCurrentUrl
+
 

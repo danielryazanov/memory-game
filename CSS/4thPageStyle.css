@@ -127,11 +127,18 @@ tr:last-child td:last-child {
 #play_again:active {
     transform: scale(1.19);
 }
+
+#play_again a {
+    text-decoration: none;
+    color: hsla(153, 100%, 34%, 1);    
+}
+
 /*Share icons and header*/
 #share_span {
     width: fit-content;
     display: block;
     margin: 0 auto;
+    font-size: larger;
 }
 
 #share_items_container {
@@ -143,15 +150,26 @@ tr:last-child td:last-child {
     margin: 20px auto 0 auto;
 }
 
-.share-links:hover {
-    box-shadow: black;
+.share-links {
+    background: silver;
+    border-radius: 8px;
 }
+
 
 #wa-share {
     background-image: url("https://img.icons8.com/office/32/000000/whatsapp--v1.png");
     background-size: cover;
     width: 2.5rem;
     height: 2.5rem;
+    transition: width 0.2s ease, height 0.2s ease;
+
+}
+
+#wa-share:hover{
+    width: 2.8rem;
+    height: 2.8rem;
+    background-color:mediumspringgreen; 
+
 
 }
 
@@ -160,6 +178,14 @@ tr:last-child td:last-child {
     background-size: cover;
     width: 2.5rem;
     height: 2.5rem;
+    transition: width 0.2s ease, height 0.2s ease;
+}
+
+#email-share:hover{
+    width: 2.8rem;
+    height: 2.8rem;
+    background-color:white; 
+
 }
 
 /*====PC styling (512px and above)====*/
