@@ -75,7 +75,7 @@ function stopWatch() {
 // starting and stoping the stopwatch when clicking the start/stop button:
 let start_stop = document.getElementById('start_stop');
   start_stop.addEventListener('click', (event) => {
-    if (stopwatch_started == false) {
+    if (!stopwatch_started) {
       start_timer = window.setInterval(stopWatch, 1000); 
       stopwatch_started = true;
     } else {

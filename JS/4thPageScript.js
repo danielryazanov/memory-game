@@ -1,10 +1,10 @@
 // getting user info:
 const urlSearchParams = new URLSearchParams(window.location.search);
 const userDetails = Object.fromEntries(urlSearchParams.entries());
-const { fname, lname, email, score, time,} = userDetails;
 userDetails.fullName = (fname, lname) => {
   return fname + ' ' + lname
 }
+const { fname, lname,fullName, email, score, time,} = userDetails;
 
 // Immediately invoked function that inserts new rows than calling sorting functions:
 (function createNewRow() {
@@ -12,7 +12,7 @@ userDetails.fullName = (fname, lname) => {
     //adding user info to existing empty row and cells in score table:
     const byScrTable = document.getElementById('by_scr_tbl')
     let lastRow = byScrTable.rows.length - 1;
-    byScrTable.rows[lastRow].getElementsByTagName('td')[0].innerHTML = userDetails.fullName(fname,lname);
+    byScrTable.rows[lastRow].getElementsByTagName('td')[0].innerHTML = fullName(fname,lname);
     byScrTable.rows[lastRow].getElementsByTagName('td')[1].innerHTML = email;
     byScrTable.rows[lastRow].getElementsByTagName('td')[2].innerHTML = score;
     byScrTable.rows[lastRow].getElementsByTagName('td')[3].innerHTML = time;
@@ -25,10 +25,10 @@ userDetails.fullName = (fname, lname) => {
     byTimeTable.rows[lastRow].getElementsByTagName('td')[2].innerHTML = score;
     byTimeTable.rows[lastRow].getElementsByTagName('td')[3].innerHTML = time;
     rowsCreated = true
-    if (rowsCreated) {
+    //if (rowsCreated) {
       sortScoreTable()
       sortTimeTable()
-     }
+    // }
 
 })()
 
