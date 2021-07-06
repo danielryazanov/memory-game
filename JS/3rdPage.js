@@ -10,11 +10,14 @@ let cardsData = [
 let shuffleCards = shuffle(cardsData);
 
 let cards = document.getElementsByClassName("card");
-let points = 0;
 let scoreDiv = document.getElementById("points");
+let display = document.getElementById('stopwatch');
 
 let firstCardFlipped = false;
 let firstCardElement = false;
+let lockBoard = false;
+
+let points = 0;
 
 let firstIndex, secondIndex;
 
@@ -48,7 +51,9 @@ function addScore() {
     scoreDiv.innerHTML = points;
 }
 
-function flipCard(event) {
+function flipCard(event) {  
+    // dont flip if the board is locked:  
+    if (lockBoard) return
     let card = event.currentTarget;
     if (firstCardElement && firstCardElement === card) return;
     if (!firstCardFlipped) {
@@ -57,7 +62,6 @@ function flipCard(event) {
         firstIndex = card.getAttribute("data-index");
         flipAnimation(card);
     } else {
-        debugger;
         const secondIndex = card.getAttribute("data-index");
         if (secondIndex === firstIndex) {
             //equal cards
@@ -68,6 +72,7 @@ function flipCard(event) {
             firstCardElement = false;
             addScore();
         } else {
+            lockBoard = true;
             //not equal cards
             flipAnimation(card);
             setTimeout(() => {
@@ -75,13 +80,20 @@ function flipCard(event) {
                 flipAnimation(card);
                 firstCardFlipped = false;
                 firstCardElement = false;
-            }, 600);
+                lockBoard = false;
+            }, 1000);
         }
     }
+    //start timer on first click:
+    if (!stopwatch_started) {
+        start_timer = window.setInterval(stopWatch, 1000); 
+        stopwatch_started = true; 
+    }
+
 }
 
 function shuffle(array) {
-    var currentIndex = array.length,
+    let currentIndex = array.length,
         randomIndex;
 
     // While there remain elements to shuffle...
@@ -99,6 +111,33 @@ function shuffle(array) {
 
     return array;
 }
+
+function resetBoard() {
+    // flip cards back:
+    for (let i = 0; i < cards.length; i++) {
+        if (cards[i].style.transform = "rotateY(180deg)") {
+            cards[i].style.transform = "rotateY(0deg)";3
+                                                
+        }
+    // restoring the cards event listeners:
+    cards[i].addEventListener("click", flipCard); 
+    }
+    //reset points and timer:
+    [points, minutes, seconds] = [0, 0, 0];
+    scoreDiv.innerHTML = points;
+    clearInterval(start_timer);
+    stopwatch_started = false;
+    display.innerText = "00:00"
+    // shuffle(cardsData) *currently doesnt actually shuffle the cards on screen
+}
+
+
+// reset game on button click:
+let reset = document.getElementById('reset');
+reset.addEventListener('click', (event) => {
+    resetBoard()
+})
+
 
 
 
@@ -149,19 +188,23 @@ function stopWatch() {
 }
 
 
-/*
-// starting and stoping the stopwatch when clicking the start/stop button:
-let start_stop = document.getElementById('start_stop');
+
+// starting and stoping the game when clicking the start/stop button:
+let start_stop = document.getElementById('start-stop');
   start_stop.addEventListener('click', (event) => {
     if (!stopwatch_started) {
       start_timer = window.setInterval(stopWatch, 1000); 
       stopwatch_started = true;
+      start_stop.innerText = "Stop";
+      lockBoard = false;
     } else {
       clearInterval(start_timer);
       stopwatch_started = false;
+      start_stop.innerText = "Start"
+      lockBoard = true;
     }  
 })  
-*/
+
 
 
 /*===user data=== */
