@@ -1,21 +1,16 @@
 /*Fonts*/
 
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital@0;1&display=swap');
 
 
 /*====Mobile styling====*/
 :root {
     --table_border_radius: 10px;
     font-size: 3.5vw;
-    --main-font-family: 'Otomanopee One', sans-serif;
-}
-
-* {
-    font-family: var(--main-font-family);
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Archivo Narrow', sans-serif;
     min-height: 100vh;
     padding: 0px;
     margin: 0px;

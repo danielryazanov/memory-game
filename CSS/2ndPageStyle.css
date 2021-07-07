@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital@0;1&display=swap');
 
 :root {
   width: 100vw;
   height: 100vh;
-  --main-font-family: 'Otomanopee One', sans-serif;
 }
 
 body {
-  font-family: var(--main-font-family);
+  font-family: 'Archivo Narrow', sans-serif;
   background-image: url(../Pics/back-sec.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -63,8 +62,9 @@ button {
   font-size: 1em;
   transition: all 0.25s;
   font-size: 12px;
-  font-family: var(--main-font-family);
   margin-top: 15px;
+  font-family: 'Archivo Narrow', sans-serif;
+
 }
 
 button:hover {
