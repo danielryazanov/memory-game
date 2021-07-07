@@ -3,10 +3,11 @@
 :root {
   width: 100vw;
   height: 100vh;
+  --main-font-family: 'Otomanopee One', sans-serif;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;    ;
+  font-family: var(--main-font-family);
   background-image: url(../Pics/back-sec.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -62,7 +63,7 @@ button {
   font-size: 1em;
   transition: all 0.25s;
   font-size: 12px;
-  font-family: fantasy;
+  font-family: var(--main-font-family);
   margin-top: 15px;
 }
 
