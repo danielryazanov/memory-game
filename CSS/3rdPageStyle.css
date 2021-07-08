@@ -11,7 +11,7 @@ header {
     text-align: center;
     font-size: x-large;
     position: absolute;
-    left: 545px;
+    left: 650px;
     top: -36px;
 }
 
@@ -58,7 +58,7 @@ div {
     height: 553px;
     display: flex;
     flex-wrap: wrap;
-    margin: 4%;
+    margin: 2%;
     flex-direction: column;
 }
 
@@ -112,7 +112,8 @@ div {
 .btn-container {
 
     position: absolute;
-
+    left: 36%;
+    top: 61px;
 }
 
 .btn,
