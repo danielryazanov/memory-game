@@ -10,7 +10,9 @@ header {
     margin: auto;
     text-align: center;
     font-size: x-large;
-    width: 80%;
+    position: absolute;
+    left: 545px;
+    top: -36px;
 }
 
 h1 {
@@ -108,8 +110,9 @@ div {
 }
 
 .btn-container {
-    padding: 0 20px 0 235px;
-    margin-top: -50px;
+
+    position: absolute;
+
 }
 
 .btn,
@@ -140,4 +143,28 @@ a:active {
 a:hover {
     background-color: rgba(182, 182, 236, 0.753);
     opacity: 1;
+}
+
+@media screen and (max-width: 600px) {
+
+    .cardgameP {
+        /*memory-game*/
+        width: 543px;
+        height: 553px;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 4%;
+        flex-direction: column;
+    }
+
+    .card {
+        transition: transform 0.5s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+        position: relative;
+        margin: 5px;
+        transform: scale(1);
+        cursor: pointer;
+    }
+
 }
