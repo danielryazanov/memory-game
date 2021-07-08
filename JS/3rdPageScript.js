@@ -1,4 +1,3 @@
-
 /*===user data=== */
 
 //getting user data from url:
@@ -18,15 +17,17 @@ const scoreDiv = document.getElementById("points");
 const display = document.getElementById('stopwatch');
 const start_stop = document.getElementById('start-stop');
 const reset = document.getElementById('reset');
-let scoreTableLink = document.getElementById("score-table-link")
+const scoreTableLink = document.getElementById("score-table-link")
 
 
 // vars holding game state:
+let gameStarted = false
 let firstCardFlipped = false;
 let firstCardElement = false;
 let lockBoard = false;
 let points = 0;
 let firstIndex, secondIndex;
+let gameEnded = null
 
 
 /*===stopWatch===*/
@@ -53,12 +54,10 @@ function stopWatch() {
         seconds = 0
         minutes++
     }
-    if (minutes == 59 && seconds == 59) {
-      (() => {    
-        alert('You ran out of time')
-        clearInterval(start_timer);
-        stopwatch_started = false;
-  })()
+    // game over when clock reaches 3 minutes:
+    if (minutes == 3) {
+      alert('You Ran Out Of Time!');
+      resetBoard()
     }
 
 // When to display 0 before the number:
@@ -113,12 +112,15 @@ function flipCard(event) {
             }, 1000);
         }
     }
-    //start timer on first click:
+    //mark game as started:
+    gameStarted = true
+    //start timer on when clicking on a card::
     if (!stopwatch_started) {
         start_timer = window.setInterval(stopWatch, 1000); 
         stopwatch_started = true; 
     }
-
+        //check if game ended:
+        checkForGameEnd()
 }
 
 function flipAnimation(card) {
@@ -132,7 +134,11 @@ function flipAnimation(card) {
 }
 
 function addScore() {
-    points++;
+    if (minutes < 1) {
+        points += 2
+    } else {
+        points++
+    }
     scoreDiv.innerHTML = points;
 }
 
@@ -153,17 +159,19 @@ function resetBoard() {
     }
     //reset points, timer, and vars holding card elements::
     [points, minutes, seconds] = [0, 0, 0];
-    [stopwatch_started, firstCardElement, firstCardFlipped] = [false, false, false]
+    [stopwatch_started, gameStarted, firstCardElement, firstCardFlipped, lockBoard] = [false, false, false, false, false]
     clearInterval(start_timer);
     //reset display values:
     display.innerText = "00:00"
     scoreDiv.innerHTML = points;
+    start_stop.innerText = "Stop";
     // wait for cards to flip then shuffle:
     setTimeout(shuffleCards, 500)     
 }
 
-function startOrStopGame() {
-    if (!stopwatch_started) {
+function startOrStopGame() {  
+    if (!gameStarted) return
+    if (!stopwatch_started) {        
         start_timer = window.setInterval(stopWatch, 1000); 
         stopwatch_started = true;
         start_stop.innerText = "Stop";
@@ -174,6 +182,16 @@ function startOrStopGame() {
         start_stop.innerText = "Start"
         lockBoard = true;
       }  
+}
+
+function checkForGameEnd(){
+    let cardsAsArray =  Array.from(cards)
+    gameEnded = cardsAsArray.every( e  => e.style.transform == "rotateY(180deg)");
+    if (gameEnded) {
+        clearInterval(start_timer)
+        start_stop.innerText = "Start"
+        setTimeout(() =>{ alert("You Won");}, 600);
+    }
 }
 
 
@@ -210,10 +228,12 @@ scoreTableLink.addEventListener('click', (event) => {
     // storing the current values on click and changing the link accordingly:
     let userScore = document.getElementById('points').innerText;
     let userTime = document.getElementById('stopwatch').innerText;
-    scoreTableLink.href = '../HTML/4thPage.html' + window.location.search + '&score=' + userScore + '&time=' + userTime
+    if (gameEnded) scoreTableLink.href = '../HTML/4thPage.html' + window.location.search + '&score=' + userScore + '&time=' + userTime    
   })
   
   
+
+
 
 
 
